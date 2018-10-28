@@ -3,7 +3,7 @@ from __future__ import unicode_literals, absolute_import
 
 import hashlib
 import random
-from cStringIO import StringIO
+from io import BytesIO
 
 from django.core.files.storage import Storage
 from django.conf import settings
@@ -15,13 +15,13 @@ class BlogStorage(Storage):
 
     def _get_filename(self, name):
         md5 = hashlib.md5()
-        md5.update(name)
+        md5.update(name.encode('utf-8'))
         random_str = str(random.randint(1000, 9999))
         return settings.MEDIA_PREFIX + md5.hexdigest() + random_str
 
     def _save(self, name, content):
         filename = self._get_filename(name)
-        im = Image.open(StringIO(content.read()))
+        im = Image.open(BytesIO(content.read()))
         extension = im.format
         filename = filename+'.'+extension
         if isinstance(content, ImageFieldFile) and content.field.name == 'icon':
