@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'bill',
     'plan',
     'browser_record',
-    'django.contrib.sites',
 
     'django.contrib.admin',
     'django.contrib.auth',
