@@ -23,6 +23,8 @@ class Command(BaseCommand):
             for line in f.readlines():
                 try:
                     ip, _, refer, ua, url, status, access_time, fp2, language, resolution, platform = line.split(',####')
+                    if ip == '127.0.0.1':
+                        continue
                     url = url.replace('GET', '').replace('HTTP/1.1', '').replace('HTTP/1.0', '')
                     if useless_log(url, ua, status):
                         continue
@@ -76,6 +78,7 @@ class Command(BaseCommand):
                     print('-----------Done-------------------')
                 except Exception as e:
                     print(str(e))
+                    raise e
                     logger.error('Error when analysys accesslog, %s' % e)
         reader.close()
 
