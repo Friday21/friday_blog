@@ -78,7 +78,6 @@ class Command(BaseCommand):
                     print('-----------Done-------------------')
                 except Exception as e:
                     print(str(e))
-                    raise e
                     logger.error('Error when analysys accesslog, %s' % e)
         reader.close()
 
