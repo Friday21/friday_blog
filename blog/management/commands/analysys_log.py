@@ -12,7 +12,7 @@ from blog.models import AccessLog, Article
 logger = logging.getLogger(__name__)
 ACCESS_LOG_DIR = '/var/log/nginx'
 log_file = ACCESS_LOG_DIR + '/access.log'
-geoip_db = '/root/myblog/geodb/GeoLite2-City.mmdb'
+geoip_db = '/friday/data/geodb/GeoLite2-City.mmdb'
 TIME_FORMAT = '%d/%b/%Y:%H:%M:%S'
 
 
