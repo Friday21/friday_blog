@@ -38,15 +38,15 @@ def get_article_info(article):
     if desc_length < 88:
         desc += '*'*88
     if char_len(title) > 16:
-        title = title.decode('utf-8')[:16].encode('utf-8')
+        title = title[:16]
     if char_len(title) > 8:
-        new_desc = desc.decode('utf-8')[:68].encode('utf-8')
-        while char_len(new_desc.decode('utf-8')) < 68:
-            new_desc += desc.decode('utf-8')[len(new_desc.decode('utf-8'))].encode('utf-8')
+        new_desc = desc[:68]
+        while char_len(new_desc) < 68:
+            new_desc += desc[len(new_desc)]
     else:
-        new_desc = desc.decode('utf-8')[:82].encode('utf-8')
-        while char_len(new_desc.decode('utf-8')) < 82:
-            new_desc += desc.decode('utf-8')[len(new_desc.decode('utf-8'))].encode('utf-8')
+        new_desc = desc[:82]
+        while char_len(new_desc) < 82:
+            new_desc += desc[len(new_desc)]
     article_info = dict(title=title, id=article.id, cat_id=article.cat_id,
                         tag_id=article.tag_id, description=new_desc,
                         content=article.content, perm_level=article.perm_level,

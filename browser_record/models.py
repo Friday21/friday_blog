@@ -5,7 +5,7 @@ from django.db import models
 class WebType(models.Model):
     type = models.CharField(max_length=32, verbose_name='网站类型')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.type
 
 
@@ -15,7 +15,7 @@ class Domain(models.Model):
     visit_count = models.IntegerField(verbose_name='访问次数', default=0, blank=True)
     last_visited_time = models.DateTimeField(verbose_name='最后访问时间', null=True, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.domain
 
 

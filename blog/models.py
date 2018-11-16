@@ -9,14 +9,14 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name='目录')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=255, verbose_name='标签')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -36,7 +36,7 @@ class Article(models.Model):
             self.event_date = datetime.now()
         super(Article, self).save(*args, **kwargs)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -44,7 +44,7 @@ class Image(models.Model):
     image = models.ImageField(verbose_name='图片')
     create_date = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.image.name
 
 
