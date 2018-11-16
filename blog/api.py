@@ -7,7 +7,7 @@ from blog.models import Tag, Category
 
 def get_articles_context(article_list, page):
     article_info_list = []
-    page_num = (len(article_list) - 6) / 9 + 2 if len(article_list) > 6 else 1
+    page_num = (len(article_list) - 6) // 9 + 2 if len(article_list) > 6 else 1
     if page > page_num:
         page = page_num
     next_page = page + 1 if page < page_num else False
