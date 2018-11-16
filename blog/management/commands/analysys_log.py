@@ -2,7 +2,7 @@
 
 import logging
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import requests
 import geoip2.database
@@ -28,7 +28,7 @@ class Command(BaseCommand):
                     url = url.replace('GET', '').replace('HTTP/1.1', '').replace('HTTP/1.0', '')
                     if useless_log(url, ua, status):
                         continue
-                    access_time = datetime.strptime(access_time.split(' ')[0], TIME_FORMAT)
+                    access_time = datetime.strptime(access_time.split(' ')[0], TIME_FORMAT) + timedelta(hours=8)
                     if AccessLog.objects.filter(access_time=access_time, ua=ua, url=url).exists():
                         continue
 
