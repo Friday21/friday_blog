@@ -75,7 +75,7 @@ class Command(BaseCommand):
                     update_count(url)
                     print('-----------Done-------------------')
                 except Exception as e:
-                    print str(e)
+                    print(str(e))
                     logger.error('Error when analysys accesslog, %s' % e)
         reader.close()
 
