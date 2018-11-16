@@ -127,7 +127,7 @@ def get_ip138_address(ip):
     resp = requests.get(url=url, params=params, headers=headers)
     if resp.status_code != 200:
         return 'ip138错误' + str(resp.status_code)
-    return resp.content.replace(ip, '')
+    return resp.content.decode('utf-8').replace(ip, '')
 
 
 def useless_log(url, ua, status):
