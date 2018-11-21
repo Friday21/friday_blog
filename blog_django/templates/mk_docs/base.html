@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <meta id="disqus-data" data-url="{{ page_url }}" data-identifier="{{ page_identify }}" data-cat="{{ category_id }}">
     <head>
         {% block site_meta %}
         <meta charset="utf-8">
@@ -128,9 +129,10 @@
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
     {#/*#}
     var disqus_config = function () {
-    this.page.url = '{{ page_url }}';  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = '{{ page_identify }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    this.page.category_id = '{{ category_id }}'
+    var disqus_data = $('#disqus-data').data();
+    this.page.url = disqus_data.url;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = disqus_data.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    this.page.category_id = disqus_data.category_id
     };
     {#*/#}
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -139,7 +141,6 @@
     s.setAttribute('data-timestamp', + new Date());
     (d.head || d.body).appendChild(s);
     })();
-    disqus_config()
     </script>
 
 </html>
