@@ -56,7 +56,8 @@ class ArticleDetail(View):
                        article_title=article_title, cat_info_list=get_cat_info_list(),
                        tag_info_list=get_tag_info_list(), date=article_info['date'],
                        clap_count=clap_count,
-                       page_url='/articles/{}/'.format(article_id),
+                       category_id=article.cat_id,
+                       page_url='www.fridayhaohao.com/articles/{}/'.format(article_id),
                        page_identify='id_{}'.format(article_id))
         context.update(page_content)
         return render(request, 'mk_docs/main.html', context)
