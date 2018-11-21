@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta id="disqus-data" data-url="{{ page_url }}" data-identifier="{{ page_identify }}" data-cat="{{ category_id }}">
+    <meta id="disqus-data" data-url="{{ page_url }}" data-identifier="{{ page_identify }}" data-cat="{{ category_id }}"
+    data-title="{{ article_title }}">
     <head>
         {% block site_meta %}
         <meta charset="utf-8">
@@ -132,7 +133,8 @@
     var disqus_data = $('#disqus-data').data();
     this.page.url = disqus_data.url;  // Replace PAGE_URL with your page's canonical URL variable
     this.page.identifier = disqus_data.identifier; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    this.page.category_id = disqus_data.category_id
+    this.page.category_id = disqus_data.category_id;
+    this.page.title = disqus_data.title
     };
     {#*/#}
     (function() { // DON'T EDIT BELOW THIS LINE
