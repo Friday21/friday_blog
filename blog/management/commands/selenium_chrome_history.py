@@ -14,6 +14,7 @@ TIME_ZONE = settings.TIME_ZONE
 
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.common.keys import Keys
 
 from browser_record.models import Domain, ChromeRecord
 
@@ -26,6 +27,7 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = '/usr/bin/chromium-browser'
 # options.add_argument("--headless")
 chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--headless')
 # proxy = '127.0.0.1:1080'
 # chrome_options.add_argument('--proxy-server=socks5://%s' % proxy)
 
@@ -91,13 +93,13 @@ def open_google_auth(browser):
     time.sleep(10)
     # 找到登录框
     try:
-        browser.find_element_by_xpath('//*[@id="identifierId"]').send_keys(username)
+        browser.find_element_by_xpath('//*[@id="identifierId"]').send_keys(username, Keys.ENTER)
     except NoSuchElementException:
-        browser.find_element_by_xpath('//*[@id="Email"]').send_keys(username)
-    browser.find_element_by_xpath('//*[@id="identifierNext"]/content/span').click()
+        browser.find_element_by_xpath('//*[@id="Email"]').send_keys(username, Keys.ENTER)
+    # browser.find_element_by_xpath('//*[@id="identifierNext"]/content/span').click()
     time.sleep(10)
-    browser.find_element_by_xpath('//*[@id="password"]/div[1]/div/div[1]/input').send_keys(password)
-    browser.find_element_by_xpath('//*[@id="passwordNext"]/content/span').click()
+    browser.find_element_by_xpath('//*[@id="password"]/div[1]/div/div[1]/input').send_keys(password, Keys.ENTER)
+    # browser.find_element_by_xpath('//*[@id="passwordNext"]/content/span').click()
     print('auth success')
 
 
