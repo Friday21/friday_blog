@@ -45,10 +45,10 @@
         {% block extrahead %} {% endblock %}
 
     <script>
-        var isWindows = function() {
-            return /windows|win32/i.test(navigator.userAgent);
+        var isMac = function() {
+            return /macintosh|mac os x/i.test(navigator.userAgent);
         }();
-        if (!isWindows){
+        if (isMac){
             document.write("<link href='/static/css/custom_css.css' rel='stylesheet' />");
         }
     </script>
