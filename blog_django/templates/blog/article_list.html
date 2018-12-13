@@ -9,7 +9,14 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-
+    <script>
+        var isWindows = function() {
+            return /windows|win32/i.test(navigator.userAgent);
+        }();
+        if (!isWindows){
+            document.write("<link href='/static/css/custom_css.css' rel='stylesheet' />");
+        }
+    </script>
     <link href="/static/bootstrap3/css/bootstrap.css" rel="stylesheet" />
 
     <link href="/static/assets/css/demo.css" rel="stylesheet" />
@@ -40,30 +47,6 @@
 
     <!--     Fonts and icons     -->
 {#    <link href="/static/assets/css/fonts/pe-icon-7-stroke.css" rel="stylesheet">#}
-<style>
-        @font-face {
-        font-family: ClassicRound;
-        src: url("/static/classic_round.woff") format("woff"), /* Modern Browsers */
-             url("/static/classic_round.ttf")  format("truetype"); /* Safari, Android, iOS */
-
-        }
-
-        @font-face {
-        font-family: ClassicRound;
-        font-weight: bold;
-        src: url("/static/classic_round.woff") format("woff"), /* Modern Browsers */
-             url("/static/classic_round.ttf")  format("truetype"); /* Safari, Android, iOS */
-        }
-
-        h1, h2, h3, body {
-          font-family: Tahoma, ClassicRound, Helvetica, "Helvetica Neue", "Apple Color Emoji", serif;
-            color: #333;
-    }
-        body {
-            font-size: 20px;
-            color: #333333d4;
-        }
-    </style>
 </head>
 <body style="background-color: #707070">
     {% include "mk_docs/nav.html" %}
