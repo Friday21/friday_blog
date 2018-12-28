@@ -25,7 +25,7 @@ class Article(models.Model):
     tag = models.ForeignKey(Tag, default=None, verbose_name='标签', on_delete=models.CASCADE)
     title = models.CharField(max_length=255, verbose_name='文章标题')
     content = models.TextField(default='', verbose_name='文章内容')
-    icon = models.ImageField(verbose_name='缩略图', null=True)
+    icon = models.ImageField(verbose_name='缩略图', null=True, blank=True)
     desc = models.CharField(max_length=255, verbose_name='引导语')
     perm_level = models.IntegerField(default=0, verbose_name='加密等级')
     view_count = models.IntegerField(default=0, verbose_name='浏览次数')
