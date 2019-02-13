@@ -20,12 +20,11 @@ from browser_record.models import Domain, ChromeRecord
 
 from tools.time_process import trans_local_to_utc
 
-# chromedriver_path = '/home/friday/myproject/chromedriver'
 chromedriver_path = '/usr/bin/chromedriver'
+# chromedriver_path = '/a1/static/chromedriver'  # local mac
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = '/usr/bin/chromium-browser'
-# options.add_argument("--headless")
+# chrome_options.binary_location = '/usr/bin/chromium-browser'
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
 # proxy = '127.0.0.1:1080'
@@ -98,7 +97,7 @@ def open_google_auth(browser):
         browser.find_element_by_xpath('//*[@id="Email"]').send_keys(username, Keys.ENTER)
     # browser.find_element_by_xpath('//*[@id="identifierNext"]/content/span').click()
     time.sleep(10)
-    browser.find_element_by_xpath('//*[@id="password"]/div[1]/div/div[1]/input').send_keys(password, Keys.ENTER)
+    browser.find_element_by_id('Passwd').send_keys(password, Keys.ENTER)
     # browser.find_element_by_xpath('//*[@id="passwordNext"]/content/span').click()
     print('auth success')
 
@@ -138,11 +137,11 @@ def analysis_elements(elements, yesterday_height):
         timer = element.find_element_by_css_selector(
             'div.fp-display-block-details.t12.g6.layout-align-start-center.layout-row').get_attribute('innerHTML')
         try:
-            url = re.findall(' href="(.*?)">', content.encode('utf-8'))[0]
+            url = re.findall(' href="(.*?)">', content)[0]
             if 'url?q=' in url:
                 url = url.split('url?q=')[-1]
-            title = re.findall('">\n(.*?)\n', content.encode('utf-8'))[0].strip()
-            visit_time = re.findall('>([0-9]{1,2}:[0-9]{2} [AMPM]{2})', timer.encode('utf-8'))[0]
+            title = re.findall('">\n(.*?)\n', content)[0].strip()
+            visit_time = re.findall('>([0-9]{1,2}:[0-9]{2} [AMPM]{2})', timer)[0]
 
             hour = int(visit_time.split(':')[0])
             if hour != 12 and visit_time[-2:].strip().lower() == 'pm':
@@ -153,9 +152,8 @@ def analysis_elements(elements, yesterday_height):
             visit_time = datetime.now().replace(hour=hour, minute=minute)
             if local_to_utc(visit_time) < last_record_time:
                 break
-            print(url.decode('utf-8'), title.decode('utf-8'), visit_time)
-            save_record(url.decode('utf-8')[:250].encode('utf-8'),
-                        title.decode('utf-8')[:50].encode('utf-8'), visit_time)
+            # print(url.decode('utf-8'), title.decode('utf-8'), visit_time)
+            save_record(url[:250], title[:50], visit_time)
         except IndexError:
             continue
 
