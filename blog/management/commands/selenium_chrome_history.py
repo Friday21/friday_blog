@@ -66,17 +66,13 @@ def open_history(browser):
     except TimeoutException:
         print('time out')
         pass
+
     try:
-        element = browser.find_element_by_xpath('//*[@id="gb"]/div/div[2]/div[4]/div[1]/a')
+        browser.find_element_by_id('gb')
     except NoSuchElementException:
         return False
-    title = element.get_attribute('title')
-    if 'lidongyong' in title:
-        print('open history from cookie success')
-        return True
-    else:
-        print('open from cookie error, try auth')
-        return False
+    print('open history from cookie success')
+    return True
 
 
 def open_google_auth(browser):
