@@ -65,7 +65,7 @@ def handle_consume(message):
     if '昨天' in message or '昨日' in message or 'yesterday' in message:
         consume_date = datetime.now() - timedelta(days=1)
     consume_date = consume_date.date()
-    num = re.findall('^[今天|昨天|今日|昨日|today|yesterday]{0,2}[早上|上午|下午|晚上]消费(\d)元.*', message)
+    num = re.findall('^[今天|昨天|今日|昨日|today|yesterday]{0,2}[早上|上午|下午|晚上]{1,2}消费(\d)元.*', message)
     num = int(num[0])
     _, consume_type, pay_method = message.split()
     _, consume_type = ConsumeType.objects.get_or_create(name=consume_type)
