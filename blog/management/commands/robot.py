@@ -101,7 +101,7 @@ def handle_daily_plan(message):
         date = date - timedelta(days=1)
     date = date.date()
 
-    event_type, _ = EventType.objects.get_or_create()
+    event_type, _ = EventType.objects.get_or_create(name=event_type)
     plan = DailyPlan(plan_type=PLAN_TYPE.DAY, event_type=event_type, title=content, content=content,
                      date=date, event_time=event_time)
     plan.save()
