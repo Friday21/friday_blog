@@ -23,9 +23,10 @@ UNKNOWN = ["I don't get it", "你说的好高深， 我没懂诶", "我没明白
 
 @itchat.msg_register(itchat.content.TEXT)
 def text_reply(msg):
-    message = msg.txt
-    if message['ToUserName'] == 'filehelper' or \
-            message['FromUserName'] == '@67356da109edda60000bcf5fdbba0d1a4053ea47d579f720b9c17805a7e43e47':
+    message = msg.text
+    print(message)
+    if msg['ToUserName'] == 'filehelper' or \
+            msg['FromUserName'] == '@67356da109edda60000bcf5fdbba0d1a4053ea47d579f720b9c17805a7e43e47':
         # 记录消费信息、日报
         if message.startswith('help') or message.startswith('帮助'):
             return HELP
@@ -39,7 +40,7 @@ def text_reply(msg):
                 return handle_daily_plan(message)
             except Exception as e:
                 return '格式不正确，exception:{}, ex:今天晚上计划 学习 机器学习看一节'.format(e)
-        elif re.match('^[今天|昨天|\d天内]{1,2}访客人数.*'):
+        elif re.match('^[今天|昨天|\d天内]{1,2}访客人数.*', message):
             try:
                 return handle_visit_count(message)
             except Exception as e:
