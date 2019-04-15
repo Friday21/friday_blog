@@ -29,7 +29,7 @@ def text_reply(req):
         # 记录消费信息、日报
         if message.startswith('help') or message.startswith('帮助'):
             msg = HELP
-        elif re.match('^[今天|昨天|今日|昨日|today|yesterday]{0,2}[早上|上午|下午|晚上]消费].*', message):
+        elif re.match('^[今天|昨天|今日|昨日|today|yesterday]{0,2}[早上|上午|下午|晚上]消费.*', message):
             try:
                 msg = handle_consume(message)
             except Exception as e:
@@ -45,7 +45,7 @@ def text_reply(req):
             except Exception as e:
                 msg = '格式不正确，exception:{}, ex:[今天|昨天|7天内]访客人数'.format(e)
         else:
-            msg = random.choice(HELP)
+            msg = random.choice(UNKNOWN)
         if req['ToUserName'] == 'filehelper':
             itchat.send(msg, toUserName='filehelper')
         else:
@@ -65,7 +65,7 @@ def handle_consume(message):
     if '昨天' in message or '昨日' in message or 'yesterday' in message:
         consume_date = datetime.now() - timedelta(days=1)
     consume_date = consume_date.date()
-    num = re.findall('^[今天|昨天|今日|昨日|today|yesterday]{0,2}[早上|上午|下午|晚上]消费](\d)元.*', message)
+    num = re.findall('^[今天|昨天|今日|昨日|today|yesterday]{0,2}[早上|上午|下午|晚上]消费(\d)元.*', message)
     num = int(num[0])
     _, consume_type, pay_method = message.split()
     _, consume_type = ConsumeType.objects.get_or_create(name=consume_type)
@@ -112,7 +112,7 @@ def handle_visit_count(message):
     from_time = datetime.now().replace(hour=0, minute=0)
     if '昨天' in message:
         from_time = from_time - timedelta(days=1)
-    else:
+    elif '今天' not in message and '今日' not in message:
         days = int(re.findall('(\d+)天内', message)[0])
         from_time = from_time - timedelta(days=days)
     visit_count = AccessLog.objects.filter(access_time__gte=from_time).count()
