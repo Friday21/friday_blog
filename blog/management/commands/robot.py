@@ -22,31 +22,34 @@ UNKNOWN = ["I don't get it", "你说的好高深， 我没懂诶", "我没明白
 
 
 @itchat.msg_register(itchat.content.TEXT)
-def text_reply(msg):
-    message = msg.text
-    print(message)
-    if msg['ToUserName'] == 'filehelper' or \
-            msg['FromUserName'] == '@67356da109edda60000bcf5fdbba0d1a4053ea47d579f720b9c17805a7e43e47':
+def text_reply(req):
+    message = req.text
+    if req['ToUserName'] == 'filehelper' or \
+            req['FromUserName'] == '@67356da109edda60000bcf5fdbba0d1a4053ea47d579f720b9c17805a7e43e47':
         # 记录消费信息、日报
         if message.startswith('help') or message.startswith('帮助'):
-            return HELP
+            msg = HELP
         elif re.match('^[今天|昨天|今日|昨日|today|yesterday]{0,2}[早上|上午|下午|晚上]消费].*', message):
             try:
-                return handle_consume(message)
+                msg = handle_consume(message)
             except Exception as e:
-                return '格式不正确，exception:{}, ex:今天上午消费5元 超市 微信'.format(e)
+                msg = '格式不正确，exception:{}, ex:今天上午消费5元 超市 微信'.format(e)
         elif re.match('^[今天|今日|明天|明日]计划.*', message):
             try:
-                return handle_daily_plan(message)
+                msg = handle_daily_plan(message)
             except Exception as e:
-                return '格式不正确，exception:{}, ex:今天晚上计划 学习 机器学习看一节'.format(e)
+                msg = '格式不正确，exception:{}, ex:今天晚上计划 学习 机器学习看一节'.format(e)
         elif re.match('^[今天|昨天|\d天内]{1,2}访客人数.*', message):
             try:
-                return handle_visit_count(message)
+                msg = handle_visit_count(message)
             except Exception as e:
-                return '格式不正确，exception:{}, ex:[今天|昨天|7天内]访客人数'.format(e)
+                msg = '格式不正确，exception:{}, ex:[今天|昨天|7天内]访客人数'.format(e)
         else:
-            return random.choice(HELP)
+            msg = random.choice(HELP)
+        if req['ToUserName'] == 'filehelper':
+            itchat.send(msg, toUserName='filehelper')
+        else:
+            return msg
 
 
 def handle_consume(message):
