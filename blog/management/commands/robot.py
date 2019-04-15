@@ -98,7 +98,7 @@ def handle_daily_plan(message):
 
     date = datetime.now()
     if '明天' in plan_time or '明日' in plan_time:
-        date = date - timedelta(days=1)
+        date = date + timedelta(days=1)
     date = date.date()
 
     event_type, _ = EventType.objects.get_or_create(name=event_type)
