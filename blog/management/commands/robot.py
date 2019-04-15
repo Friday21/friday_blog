@@ -34,7 +34,7 @@ def text_reply(req):
                 msg = handle_consume(message)
             except Exception as e:
                 msg = '格式不正确，exception:{}, ex:今天上午消费5元 超市 微信'.format(e)
-        elif re.match('^[今天|今日|明天|明日]{0,2}计划.*', message):
+        elif re.match('^[今天|今日|明天|明日]{0,2}[早上|上午|下午|晚上]{1,2}计划.*', message):
             try:
                 msg = handle_daily_plan(message)
             except Exception as e:
