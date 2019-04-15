@@ -109,3 +109,4 @@ venv.bak/
 
 
 !/blog_django/static/js/
+cookies.pkl

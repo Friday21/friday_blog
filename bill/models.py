@@ -26,8 +26,9 @@ class BalanceLog(models.Model):
     )
     TIME_ITEMS = EntityState(
         (1, 'MORNING', '早上'),
-        (2, 'NOON', '中午'),
+        (2, 'NOON', '上午'),
         (3, 'NIGHT', '晚上'),
+        (4, 'AFTERNOON', '下午'),
     )
     PAY_METHOD = EntityState(
         (1, "CARD", "银行卡"),
@@ -58,9 +59,8 @@ class BalanceLog(models.Model):
                 pre_balance = BalanceLog.objects.first().balance
             else:
                 pre_balance = to_decimal('0.00')
-            if not self.is_card:
-                self.balance = pre_balance
-            elif self.type == BalanceLog.TYPE_ITEMS.IN:
+
+            if self.type == BalanceLog.TYPE_ITEMS.IN:
                 self.balance = pre_balance + self.amt
             else:
                 self.balance = pre_balance - self.amt
