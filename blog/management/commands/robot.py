@@ -22,7 +22,8 @@ UNKNOWN = ["I don't get it", "你说的好高深， 我没懂诶", "我没明白
 
 
 @itchat.msg_register(itchat.content.TEXT)
-def text_reply(message):
+def text_reply(msg):
+    message = msg.txt
     if message['ToUserName'] == 'filehelper' or \
             message['FromUserName'] == '@67356da109edda60000bcf5fdbba0d1a4053ea47d579f720b9c17805a7e43e47':
         # 记录消费信息、日报
