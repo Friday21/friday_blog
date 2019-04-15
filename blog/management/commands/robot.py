@@ -68,7 +68,7 @@ def handle_consume(message):
     num = re.findall('^[今天|昨天|今日|昨日|today|yesterday]{0,2}[早上|上午|下午|晚上]{1,2}消费(\d)元.*', message)
     num = int(num[0])
     _, consume_type, pay_method = message.split()
-    _, consume_type = ConsumeType.objects.get_or_create(name=consume_type)
+    consume_type, _ = ConsumeType.objects.get_or_create(name=consume_type)
     if '微信' in pay_method:
         PAY_METHOD = BalanceLog.PAY_METHOD.WECHAT
     elif '支付宝' in pay_method:
@@ -101,7 +101,7 @@ def handle_daily_plan(message):
         date = date - timedelta(days=1)
     date = date.date()
 
-    _, event_type = EventType.objects.get_or_create()
+    event_type, _ = EventType.objects.get_or_create()
     plan = DailyPlan(plan_type=PLAN_TYPE.DAY, event_type=event_type, title=content, content=content,
                      date=date, event_time=event_time)
     plan.save()
