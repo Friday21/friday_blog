@@ -79,7 +79,7 @@ def handle_consume(message):
         PAY_METHOD = BalanceLog.PAY_METHOD.CREDIT
     else:
         PAY_METHOD = BalanceLog.PAY_METHOD.CARD
-    balance_log = BalanceLog(balance=Decimal(num), consume_date=consume_date, consume_type=consume_type,
+    balance_log = BalanceLog(amt=Decimal(num), consume_date=consume_date, consume_type=consume_type,
                              pay_method=PAY_METHOD, consume_time=time_item)
     balance_log.save()
     return 'copy'
