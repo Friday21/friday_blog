@@ -139,23 +139,24 @@ var Tick = {
     })
   }
 }
-var SONGS = [
-  {
-    artist: 'Michael',
-    name: 'Stone Cold Funk',
-    url: '/static/music/1.mp3'
-  },
-  {
-    artist: 'GRANiDELiA',
-    name: '极乐净土',
-    url: '/static/music/2.mp3'
-  },
-  {
-    artist: 'Audio Machine',
-    name: 'Breath and Life',
-    url: '/static/music/3.mp3'
-  }
-]
+// var SONGS = [
+//   {
+//     artist: 'Michael',
+//     name: 'Stone Cold Funk',
+//     url: '/static/music/1.mp3'
+//   },
+//   {
+//     artist: 'GRANiDELiA',
+//     name: '极乐净土',
+//     url: '/static/music/2.mp3'
+//   },
+//   {
+//     artist: 'Audio Machine',
+//     name: 'Breath and Life',
+//     url: '/static/music/3.mp3'
+//   }
+// ]
+
 var MusicPlayer = {
   i: 1,
   currentSongIndex: 1,
