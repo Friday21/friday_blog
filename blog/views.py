@@ -162,6 +162,6 @@ class MusicView(View):
     def get(self, request):
         songs = Song.objects.all()
         musics = []
-        for song in songs:
+        for song in songs[:20]:
             musics.append({'name': song.name, 'url': song.song.url, 'artist': song.artist})
         return render(request, 'blog/music.html', {'SONGS': json.dumps(musics)})
