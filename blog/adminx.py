@@ -118,6 +118,9 @@ class ClapRecordAdmin(object):
 class SongAdmin(object):
     list_display = ['id', 'name', 'artist', 'url', 'sort']
 
+    def url(self, obj):
+        return obj.song.url
+
 
 xadmin.site.register(Article, ArticleAdmin)
 xadmin.site.register(Image, ImageAdmin)
