@@ -155,3 +155,8 @@ class ClapRecordView(View):
         )
         clap_record.save()
         return JsonResponse(data={'msg': 'success'})
+
+
+class MusicView(View):
+    def get(self, request):
+        return render(request, 'blog/music.html', {})
