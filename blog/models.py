@@ -88,7 +88,7 @@ class Song(models.Model):
     name = models.CharField(max_length=128, verbose_name='歌名')
     artist = models.CharField(max_length=128, verbose_name='歌手')
     sort = models.IntegerField(default=100, verbose_name='排名')
-    song = models.FileField(verbose_name='文件', storage=Storage)
+    song = models.FileField(verbose_name='文件', storage=Storage())
 
     class Meta:
         ordering = ['sort']
