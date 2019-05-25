@@ -6,7 +6,7 @@ from datetime import datetime
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 
-fs = FileSystemStorage(location='/static/img')
+fs = FileSystemStorage(location='/friday/friday_blog/blog_django/static/img')  # TODO 动态生成
 
 
 class Category(models.Model):
