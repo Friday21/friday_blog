@@ -6,7 +6,7 @@ from datetime import datetime
 from django.db import models
 from django.core.files.storage import FileSystemStorage
 
-fs = FileSystemStorage(location='/static/music')
+fs = FileSystemStorage(location='/static/img')
 
 
 class Category(models.Model):
