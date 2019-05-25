@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import re
+import json
 
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, StreamingHttpResponse
@@ -159,4 +160,7 @@ class ClapRecordView(View):
 
 class MusicView(View):
     def get(self, request):
-        return render(request, 'blog/music.html', {})
+        songs = [{'name': '突然的自我', 'url': '/static/music/1.mp3', 'artist': '伍佰'},
+                 {'name': '张三的歌', 'url': '/static/music/2.mp3', 'artist': '蔡琴'},
+                 {'name': '潮汕路', 'url': '/static/music/3.mp3', 'artist': '小海'}]
+        return render(request, 'blog/music.html', {'SONGS': json.dumps(songs)})
