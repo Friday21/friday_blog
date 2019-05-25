@@ -10,7 +10,7 @@ from django.views.generic import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
-from blog.models import Article, Tag, ClapRecord, AccessLog
+from blog.models import Article, Tag, ClapRecord, AccessLog, Song
 from blog.api import get_article_info, get_cat_info_list, get_tag_info_list, get_articles_context
 from blog_django.utils.mkdoc_build import render_content
 
@@ -160,7 +160,8 @@ class ClapRecordView(View):
 
 class MusicView(View):
     def get(self, request):
-        songs = [{'name': '突然的自我', 'url': '/static/music/1.mp3', 'artist': '伍佰'},
-                 {'name': '张三的歌', 'url': '/static/music/2.mp3', 'artist': '蔡琴'},
-                 {'name': '潮汕路', 'url': '/static/music/3.mp3', 'artist': '小海'}]
-        return render(request, 'blog/music.html', {'SONGS': json.dumps(songs)})
+        songs = Song.objects.all()
+        musics = []
+        for song in songs:
+            musics.append({'name': song.name, 'url': song.song.url, 'artist': song.artist})
+        return render(request, 'blog/music.html', {'SONGS': json.dumps(musics)})

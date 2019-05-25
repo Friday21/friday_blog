@@ -7,7 +7,7 @@ from datetime import datetime
 from django.utils.timezone import localtime
 from xadmin.filters import ChoicesFieldListFilter, manager
 
-from blog.models import Article, Category, Tag, Image, AccessLog, ClapRecord
+from blog.models import Article, Category, Tag, Image, AccessLog, ClapRecord, Song
 
 
 class UrlFilter(ChoicesFieldListFilter):
@@ -114,9 +114,15 @@ class ClapRecordAdmin(object):
     def clap_time(self, obj):
         return datetime.strftime(localtime(obj.created_time), '%Y-%m-%d %H:%M')
 
+
+class SongAdmin(object):
+    list_display = ['id', 'name', 'artist', 'url', 'sort']
+
+
 xadmin.site.register(Article, ArticleAdmin)
 xadmin.site.register(Image, ImageAdmin)
 xadmin.site.register(Tag, TagAdmin)
 xadmin.site.register(Category, CategoryAdmin)
 xadmin.site.register(AccessLog, AccessLogAdmin)
 xadmin.site.register(ClapRecord, ClapRecordAdmin)
+xadmin.site.register((Song, SongAdmin))
