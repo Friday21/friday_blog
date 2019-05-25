@@ -4,7 +4,9 @@ from __future__ import unicode_literals
 from datetime import datetime
 
 from django.db import models
-from django.core.files.storage import default_storage
+from django.core.files.storage import FileSystemStorage
+
+fs = FileSystemStorage(location='/static/music')
 
 
 class Category(models.Model):
@@ -88,7 +90,7 @@ class Song(models.Model):
     name = models.CharField(max_length=128, verbose_name='歌名')
     artist = models.CharField(max_length=128, verbose_name='歌手')
     sort = models.IntegerField(default=100, verbose_name='排名')
-    song = models.FileField(verbose_name='文件', storage=default_storage)
+    song = models.FileField(verbose_name='文件', storage=fs)
 
     class Meta:
         ordering = ['sort']
