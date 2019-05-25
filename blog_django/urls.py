@@ -6,7 +6,8 @@ from django.views.static import serve
 import xadmin
 
 from blog.views import (ArticleList, ArticleDetail, TagArticleList,
-                        CatArticleList, sitemap, robot_txt, ClapRecordView, YXArticleList)
+                        CatArticleList, sitemap, robot_txt, ClapRecordView, YXArticleList,
+                        MusicView)
 
 
 xadmin.autodiscover()
@@ -21,6 +22,7 @@ urlpatterns = [
     url(r'^tags/(?P<tag_id>[0-9]+)/articles', TagArticleList.as_view()),
     url(r'^category/(?P<cat_id>[0-9]+)/articles', CatArticleList.as_view()),
     url(r'^articles/clap/$', ClapRecordView.as_view()),
+    url(r'^music/$', MusicView.as_view()),
     url(r'xadmin/', include(xadmin.site.urls[:2])),
     url(r'sitemap/', sitemap),
     url(r'robots.txt/', robot_txt),
