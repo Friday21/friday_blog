@@ -51,6 +51,7 @@ class NavMenuPlugin(views.BaseAdminPlugin):
             MenuItemReplace('blog.view_claprecord', '鼓掌记录', ),
             MenuItemReplace('blog.view_article', '博客文章'),
             MenuItemReplace('blog.view_image', '图片'),
+            MenuItemReplace('blog.view_song', '音乐'),
             MenuItemReplace('blog.view_tag', '标签'),
             MenuItemReplace('blog.view_category', '目录', ),
         ]),
