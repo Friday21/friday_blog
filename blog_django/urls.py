@@ -16,7 +16,6 @@ urlpatterns = [
     url(r'^$', ArticleList.as_view()),
     url(r'^/$', ArticleList.as_view()),
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
-    url(r'^yx/$', YXArticleList.as_view()),
     url(r'^articles/$', ArticleList.as_view()),
     url(r'^articles/(?P<article_id>[0-9]+)/$', ArticleDetail.as_view()),
     url(r'^tags/(?P<tag_id>[0-9]+)/articles', TagArticleList.as_view()),
