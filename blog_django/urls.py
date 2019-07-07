@@ -6,7 +6,7 @@ from django.views.static import serve
 import xadmin
 
 from blog.views import (ArticleList, ArticleDetail, TagArticleList,
-                        CatArticleList, sitemap, robot_txt, ClapRecordView, YXArticleList,
+                        CatArticleList, sitemap, robot_txt, ClapRecordView,
                         MusicView)
 
 
