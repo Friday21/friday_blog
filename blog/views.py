@@ -28,17 +28,6 @@ class ArticleList(View):
         pass
 
 
-class YXArticleList(View):
-
-    def get(self, request):
-        # 100 level 以上的是yx的article
-        article_list = Article.objects.filter(perm_level__gte=100).order_by('-event_date').all()
-        page = int(request.GET.get('page', 1))
-        context = get_articles_context(article_list, page)
-        context.update({'home_page': True})
-        return render(request, 'blog/article_list.html', context)
-
-
 class ArticleDetail(View):
 
     def get(self, request, article_id):
