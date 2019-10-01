@@ -24,7 +24,9 @@ class BlogStorage(Storage):
         im = Image.open(BytesIO(content.read()))
         extension = im.format
         filename = filename+'.'+extension
-        if isinstance(content, ImageFieldFile) and content.field.name == 'icon':
+        if extension.upper() in 'GIF':
+            pass
+        elif isinstance(content, ImageFieldFile) and content.field.name == 'icon':
             x, y = im.size
             if x > 200 and y > 200:
                 im = im.resize((200, 200), Image.ANTIALIAS)
