@@ -1,0 +1,22 @@
+@font-face {
+font-family: ClassicRound;
+src: url("/static/classic_round.woff") format("woff"), /* Modern Browsers */
+     url("/static/classic_round.ttf")  format("truetype"); /* Safari, Android, iOS */
+
+}
+
+@font-face {
+font-family: ClassicRound;
+font-weight: bold;
+src: url("/static/classic_round.woff") format("woff"), /* Modern Browsers */
+     url("/static/classic_round.ttf")  format("truetype"); /* Safari, Android, iOS */
+}
+
+h1, h2, h3, body {
+  font-family: Tahoma, ClassicRound, Helvetica, "Helvetica Neue", "Apple Color Emoji", serif;
+    color: #333;
+}
+body {
+    font-size: 20px;
+    color: #333333d4;
+}
