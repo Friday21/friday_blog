@@ -8,7 +8,7 @@ from io import BytesIO
 from django.core.files.storage import Storage
 from django.conf import settings
 from django.db.models.fields.files import ImageFieldFile
-from PIL import Image
+from PIL import Image, ImageSequence
 
 
 class BlogStorage(Storage):
@@ -25,7 +25,9 @@ class BlogStorage(Storage):
         extension = im.format
         filename = filename+'.'+extension
         if extension.upper() in 'GIF':
-            pass
+            frames = [frame.copy() for frame in ImageSequence.Iterator(im)]
+            frames[0].save(filename, extension, append_images=frames[1:], duraton=40, save_all=True)
+            return filename.split('/')[-1]
         elif isinstance(content, ImageFieldFile) and content.field.name == 'icon':
             x, y = im.size
             if x > 200 and y > 200:
