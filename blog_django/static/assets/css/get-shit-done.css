@@ -74,6 +74,8 @@
 }
 .card-member .content {
   padding: 25px;
+  height: 360px;
+  overflow: hidden;
 }
 .card-member > img {
   background: none repeat scroll 0 0 transparent;
