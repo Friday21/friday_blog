@@ -37,9 +37,9 @@ class BalanceLog(models.Model):
         (4, "CREDIT", "信用卡"),
         (5, "CASH", "现金"),
     )
-    balance = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='余额', blank=True)
+    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name='余额', blank=True)
     type = models.SmallIntegerField(choices=TYPE_ITEMS.items(), default=2, verbose_name='变更类型')
-    amt = models.DecimalField(max_digits=8, decimal_places=2, default=0, verbose_name='变更金额')
+    amt = models.DecimalField(max_digits=10, decimal_places=2, default=0, verbose_name='变更金额')
     consume_type = models.ForeignKey(ConsumeType, verbose_name='消费类型', on_delete=models.CASCADE)
     consume_time = models.SmallIntegerField(choices=TIME_ITEMS.items(), verbose_name='消费时间')
     consume_date = models.DateField(verbose_name='消费日期', blank=True)
